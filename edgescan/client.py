@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 import json
 import os
-from typing import Iterable, Iterator, Optional
+from typing import Iterator, Optional
 from requests import Session
 import urllib.parse
 import logging
@@ -36,29 +36,7 @@ class Client:
         rows = self.iter_objects(object_type=object_type, ids=[object_id])
         return next(rows, None)
 
-    def iter_objects(
-        self,
-        object_type: str,
-        ids: Optional[Iterable[int]] = None,
-        min_create_time: Optional[TIMESTAMP] = None,
-        max_create_time: Optional[TIMESTAMP] = None,
-        min_update_time: Optional[TIMESTAMP] = None,
-        max_update_time: Optional[TIMESTAMP] = None,
-    ) -> Iterator[dict]:
-
-        rows = self._iter_objects(object_type=object_type)
-        if ids:
-            rows = filter(lambda row: row["id"] in ids, rows)
-
-        if min_create_time or max_create_time:
-            raise NotImplementedError()
-        
-        if min_update_time or max_update_time:
-            raise NotImplementedError()
-
-        yield from rows
-
-    def _iter_objects(self, object_type: str) -> Iterator[dict]:
+    def iter_objects(self, object_type: str) -> Iterator[dict]:
         url = self.get_download_url(object_type)
 
         response = self.session.get(url)
@@ -68,23 +46,8 @@ class Client:
             if row:
                 yield row
 
-    def count_objects(
-        self,
-        object_type: str,
-        ids: Optional[Iterable[int]] = None,
-        min_create_time: Optional[TIMESTAMP] = None,
-        max_create_time: Optional[TIMESTAMP] = None,
-        min_update_time: Optional[TIMESTAMP] = None,
-        max_update_time: Optional[TIMESTAMP] = None,
-    ) -> int:
-        rows = self.iter_objects(
-            object_type=object_type,
-            ids=ids,
-            min_create_time=min_create_time,
-            max_create_time=max_create_time,
-            min_update_time=min_update_time,
-            max_update_time=max_update_time,
-        )
+    def count_objects(self, object_type: str) -> int:
+        rows = self.iter_objects(object_type=object_type)
         return sum(1 for _ in rows)
 
     def export_objects(self, object_type: str, path: str):

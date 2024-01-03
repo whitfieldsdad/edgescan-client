@@ -1,12 +1,10 @@
-import datetime
 import itertools
 import json
 import logging
-from typing import List, Optional
+from typing import Optional
 
 import click
 
-import edgescan.time
 from edgescan.client import Client
 from edgescan.constants import OBJECT_TYPES, OBJECT_TYPES
 
@@ -36,63 +34,25 @@ def get_object(object_type: int, object_id: int):
 
 @cli.command("list")
 @click.argument("object_type", type=click.Choice(OBJECT_TYPES), required=True)
-@click.option("--id", "ids", multiple=True)
-@click.option("--min-create-time", type=edgescan.time.to_datetime)
-@click.option("--max-create-time", type=edgescan.time.to_datetime)
-@click.option("--min-update-time", type=edgescan.time.to_datetime)
-@click.option("--max-update-time", type=edgescan.time.to_datetime)
 @click.option("--limit", type=int)
-def get_objects(
-    object_type: int,
-    ids: List[str],
-    min_create_time: Optional[datetime.datetime],
-    max_create_time: Optional[datetime.datetime],
-    min_update_time: Optional[datetime.datetime],
-    max_update_time: Optional[datetime.datetime],
-    limit: Optional[int] = None,
-):
+def get_objects(object_type: int, limit: Optional[int] = None):
     """
     List objects.
     """
     api = Client()
-    rows = api.iter_objects(
-        object_type=object_type,
-        ids=ids,
-        min_create_time=min_create_time,
-        max_create_time=max_create_time,
-        min_update_time=min_update_time,
-        max_update_time=max_update_time,
-    )
+    rows = api.iter_objects(object_type=object_type)
     for row in itertools.islice(rows, limit):
         print(json.dumps(row))
 
 
 @cli.command("count") 
 @click.argument("object-type", type=click.Choice(OBJECT_TYPES), required=True)
-@click.option("--id", "ids", multiple=True)
-@click.option("--min-create-time", type=edgescan.time.to_datetime)
-@click.option("--max-create-time", type=edgescan.time.to_datetime)
-@click.option("--min-update-time", type=edgescan.time.to_datetime)
-@click.option("--max-update-time", type=edgescan.time.to_datetime)
-def count_objects(
-    object_type: str,
-    ids: List[str],
-    min_create_time: Optional[datetime.datetime],
-    max_create_time: Optional[datetime.datetime],
-    min_update_time: Optional[datetime.datetime],
-    max_update_time: Optional[datetime.datetime]):
+def count_objects(object_type: str):
     """
     Count objects.
     """
     api = Client()
-    total = api.count_objects(
-        object_type=object_type,
-        ids=ids,
-        min_create_time=min_create_time,
-        max_create_time=max_create_time,
-        min_update_time=min_update_time,
-        max_update_time=max_update_time,
-    )
+    total = api.count_objects(object_type=object_type)
     print(total)
 
 
