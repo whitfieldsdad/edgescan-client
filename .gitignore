@@ -1,0 +1,17 @@
+test.py
+data/
+
+.DS_Store
+.vscode
+
+*.pyc
+*.tar
+*.jsonl
+
+.idea
+.coverage
+coverage/
+.pytest_cache
+build/
+*/__pycache__/*
+dist/
