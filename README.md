@@ -20,6 +20,60 @@ The following relationships exist between assets, hosts, vulnerabilities, and se
 
 ### Command line interface
 
+#### Counting data
+
+To count all assets:
+
+```bash
+poetry run edgescan count assets
+```
+
+To count all hosts:
+
+```bash
+poetry run edgescan count hosts
+```
+
+To count all vulnerabilities:
+
+```bash
+poetry run edgescan count vulnerabilities
+```
+
+To count all services:
+
+```bash
+poetry run edgescan count services
+```
+
+#### Listing data
+
+To list all assets:
+
+```bash
+poetry run edgescan list assets | jq
+```
+
+To list all hosts:
+
+```bash 
+poetry run edgescan list hosts | jq
+```
+
+To list all vulnerabilities:
+
+```bash
+poetry run edgescan list vulnerabilities | jq
+```
+
+To list all services:
+
+```bash
+poetry run edgescan list services | jq
+```
+
+#### Exporting data
+
 To export all assets to a file named `data/assets.jsonl`
 
 ```bash
