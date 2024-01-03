@@ -9,4 +9,7 @@ lock:
 requirements.txt:
 	poetry export -f requirements.txt --output requirements.txt --without-hashes
 
-.PHONY: requirements.txt
+docs:
+	make -C docs
+
+.PHONY: requirements.txt docs

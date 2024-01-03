@@ -7,6 +7,15 @@ This is a Python client for the Edgescan API.
 - Lookup, list, count, and export metadata related to assets, hosts, vulnerabilities, and services.
 - Command line interface provides output in JSONL format for easy parsing.
 
+## Notes
+
+The following relationships exist between assets, hosts, vulnerabilities, and services:
+
+- Hosts are mapped to one or more assets using "location specifiers" (i.e. IP addresses, hostnames, CIDR ranges, etc.)
+- Vulnerabilities are mapped to individual hosts and assets (i.e. each occurrence of a vulnerability on a host is a separate record)
+
+![Relationships](docs/diagrams/relationships.png)
+
 ## Usage
 
 ### Command line interface

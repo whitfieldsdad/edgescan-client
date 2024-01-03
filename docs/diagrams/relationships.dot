@@ -1,0 +1,13 @@
+digraph G {
+    rankdir=LR;
+    node [shape=box];
+
+    assets [label="Assets"];
+    hosts [label="Hosts"];
+    services [label="Services"];
+    vulnerabilities [label="Vulnerabilities"];
+
+    hosts -> assets;
+    vulnerabilities -> hosts;
+    vulnerabilities -> assets;
+}
