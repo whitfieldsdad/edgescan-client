@@ -17,6 +17,7 @@ python = ">=3.9,<4.0"
 pandas = "^2.1.4"
 requests = "^2.31.0"
 click = "^8.1.7"
+certifi = "^2023.11.17"
 
 [tool.poetry.dev-dependencies]
 coverage = "^6.1.2"
