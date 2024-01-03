@@ -1,0 +1,19 @@
+digraph {
+  rankdir=LR;
+  concentrate=true;
+  node [shape=record];
+  edge [arrowhead=none];
+  splines=false;
+
+  apis_detected;
+  asset_id;
+  hostnames;
+  id;
+  label;
+  last_scanned_at;
+  location;
+  os_name;
+  risk_score;
+  status;
+  updated_at;
+}

@@ -7,18 +7,29 @@ This is a Python client for the Edgescan API.
 - Lookup, list, count, and export metadata related to assets, hosts, vulnerabilities, and services.
 - Command line interface provides output in JSONL format for easy parsing.
 
-## Notes
+## Installation
 
-The following relationships exist between assets, hosts, vulnerabilities, and services:
+This project uses poetry for dependency management.
 
-- Hosts are mapped to one or more assets using "location specifiers" (i.e. IP addresses, hostnames, CIDR ranges, etc.)
-- Vulnerabilities are mapped to individual hosts and assets (i.e. each occurrence of a vulnerability on a host is a separate record)
+You can install poetry using the following command:
 
-![Relationships](docs/diagrams/relationships.png)
+```bash
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
+```
+
+You can install the project's dependencies using the following commands:
+
+```bash
+poetry install
+```
+
+> ℹ️ Poetry will create a virtual environment for you in the `./.venv` directory.
 
 ## Usage
 
 ### Command line interface
+
+The command line interface provides a convenient way to lookup, list, count, and export metadata related to assets, hosts, vulnerabilities, and services.
 
 #### Counting data
 
@@ -56,7 +67,7 @@ poetry run edgescan list assets | jq
 
 To list all hosts:
 
-```bash 
+```bash
 poetry run edgescan list hosts | jq
 ```
 

@@ -1,0 +1,39 @@
+digraph {
+  rankdir=LR;
+  concentrate=true;
+  node [shape=record];
+  edge [arrowhead=none];
+  splines=false;
+
+  altered_score;
+  assessment_type;
+  asset_id;
+  asset_name;
+  confidence;
+  created_at;
+  cves;
+  cvss_score;
+  cvss_vector;
+  cvss_version;
+  date_closed;
+  date_opened;
+  definition_id;
+  edgescan_score;
+  epss_score;
+  id;
+  label;
+  layer;
+  location;
+  location_specifier_id;
+  name;
+  on_cisa_list;
+  organization_id;
+  organization_name;
+  pci_compliance_status;
+  pci_exception;
+  risk;
+  severity;
+  status;
+  threat;
+  updated_at;
+}
